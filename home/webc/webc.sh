@@ -158,6 +158,11 @@ do
 		xset s $secondstillblank
 		;;
 
+	restartafter=*)
+		seconds=${x#restartafter=}
+		logs "restart firefox after $secondsrestartafter seconds"
+		;;
+		
 	esac
 done
 
@@ -228,6 +233,7 @@ do
 			export rhomepage="$(/usr/bin/webc-wsc /opt/firefox/firefox $(echo $homepage | sed "s,MACID,$mac,g" | sed "s,WEBCID,$webc_id,g" | sed "s,WEBCVERSION,$webc_version,g" | sed "s,USBID,$usbid,g" ))"
 		else
 			/opt/firefox/firefox $(echo $homepage | sed "s,MACID,$mac,g" | sed "s,WEBCID,$webc_id,g" | sed "s,WEBCVERSION,$webc_version,g" | sed "s,USBID,$usbid,g" )
+			cmdline_has restartafter && sleep $secondsrestartafter
 		fi
 
 	fi
