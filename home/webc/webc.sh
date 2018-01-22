@@ -159,7 +159,7 @@ do
 		;;
 
 	restartafter=*)
-		seconds=${x#restartafter=}
+		secondsrestartafter=${x#restartafter=}
 		logs "restart firefox after $secondsrestartafter seconds"
 		;;
 		
